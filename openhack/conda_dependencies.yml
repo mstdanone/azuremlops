@@ -18,7 +18,7 @@ name: openhack_training_env
 dependencies:
   # The python interpreter version.
   # Currently Azure ML Workbench only supports 3.5.2 and later.
-  - python=3.7.*
+  - python=3.6.2
   - pip
 
   - pip:
@@ -37,3 +37,12 @@ dependencies:
 
       # MLOps with R
       - azure-storage-blob
+      
+      - numpy
+      - pandas
+      - lightgbm
+      - pip
+  - channels:
+      - anaconda
+      - conda-forge
+      
