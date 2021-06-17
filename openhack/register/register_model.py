@@ -1,7 +1,7 @@
 """
-Copyright (C) Microsoft Corporation. All rights reserved.​
- ​
-Microsoft Corporation (“Microsoft”) grants you a nonexclusive, perpetual,
+Copyright (C) Microsoft Corporation. All rights reserved.â€‹
+ â€‹
+Microsoft Corporation (â€œMicrosoftâ€) grants you a nonexclusive, perpetual,
 royalty-free right to use, copy, and modify the software code provided by us
 ("Software Code"). You may not sublicense the Software Code or any use of it
 (except to your affiliates and to vendors to perform work on your behalf)
@@ -10,9 +10,9 @@ otherwise. This license does not purport to express any claim of ownership over
 data you may have shared with Microsoft in the creation of the Software Code.
 Unless applicable law gives you more rights, Microsoft reserves all other
 rights not expressly granted herein, whether by implication, estoppel or
-otherwise. ​
- ​
-THE SOFTWARE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+otherwise. â€‹
+ â€‹
+THE SOFTWARE CODE IS PROVIDED â€œAS ISâ€, WITHOUT WARRANTY OF ANY KIND, EXPRESS
 OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
 MICROSOFT OR ITS LICENSORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
@@ -70,7 +70,7 @@ def main():
         "--model_name",
         type=str,
         help="Name of the Model",
-        default="openhack_model.pkl",
+        default="Team5MLOps_model.pkl",
     )
 
     parser.add_argument(
@@ -180,7 +180,7 @@ def register_aml_model(
     build_uri=None
 ):
     try:
-        tagsValue = {"area": "openhack",
+        tagsValue = {"area": "Team5MLOps",
                      "run_id": run_id,
                      "experiment_name": exp.name}
         tagsValue.update(model_tags)
