@@ -5,6 +5,11 @@ steps:
   displayName: 'Run lint tests'
 
 - script: |   
+   python -m pip install lightgbm pandas numpy scikit-learn
+  condition: succeededOrFailed()
+  displayName: 'Install unit tests dependencies'
+
+- script: |   
    python -m pytest . --cov=openhack --cov-report=html --cov-report=xml --junitxml=unit-testresults.xml
   condition: succeededOrFailed()
   displayName: 'Run unit tests'
