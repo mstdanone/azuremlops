@@ -1,8 +1,8 @@
 # Pipeline template to run linting, unit tests with code coverage, and publish the results.
 steps:
-- script: |   
-   flake8 --output-file=lint-testresults.xml --format junit-xml
-  displayName: 'Run lint tests'
+#- script: |   
+#   flake8 --output-file=lint-testresults.xml --format junit-xml
+#  displayName: 'Run lint tests'
 
 - script: |   
    python -m pip install lightgbm pandas numpy scikit-learn
