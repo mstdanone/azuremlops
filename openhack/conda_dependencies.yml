@@ -42,6 +42,7 @@ dependencies:
       - pandas
       - lightgbm
       - pip
+      - cryptography
   - channels:
       - anaconda
       - conda-forge
