@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 """
-Copyright (C) Microsoft Corporation. All rights reserved.​
- ​
-Microsoft Corporation (“Microsoft”) grants you a nonexclusive, perpetual,
+Copyright (C) Microsoft Corporation. All rights reserved.â€‹
+ â€‹
+Microsoft Corporation (â€œMicrosoftâ€) grants you a nonexclusive, perpetual,
 royalty-free right to use, copy, and modify the software code provided by us
 ("Software Code"). You may not sublicense the Software Code or any use of it
 (except to your affiliates and to vendors to perform work on your behalf)
@@ -10,9 +11,9 @@ otherwise. This license does not purport to express any claim of ownership over
 data you may have shared with Microsoft in the creation of the Software Code.
 Unless applicable law gives you more rights, Microsoft reserves all other
 rights not expressly granted herein, whether by implication, estoppel or
-otherwise. ​
- ​
-THE SOFTWARE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+otherwise. â€‹
+ â€‹
+THE SOFTWARE CODE IS PROVIDED â€œAS ISâ€, WITHOUT WARRANTY OF ANY KIND, EXPRESS
 OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
 MICROSOFT OR ITS LICENSORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
@@ -34,7 +35,7 @@ run = Run.get_context()
 # the following code is a good starting point for you
 # use
 # python -m evaluate.evaluate_model
-# in openhack folder context
+# in Team5MLOps folder context
 
 # if (run.id.startswith('OfflineRun')):
 #     from dotenv import load_dotenv
@@ -42,7 +43,7 @@ run = Run.get_context()
 #     load_dotenv()
 #     sources_dir = os.environ.get("SOURCES_DIR_TRAIN")
 #     if (sources_dir is None):
-#         sources_dir = 'openhack'
+#         sources_dir = 'Team5MLOps'
 #     path_to_util = os.path.join(".", sources_dir, "util")
 #     sys.path.append(os.path.abspath(path_to_util))  # NOQA: E402
 #     from model_helper import get_model
@@ -83,7 +84,7 @@ parser.add_argument(
     "--model_name",
     type=str,
     help="Name of the Model",
-    default="openhack_model.pkl",
+    default="Team5MLOps_model.pkl",
 )
 
 parser.add_argument(
@@ -99,7 +100,7 @@ if (args.run_id is not None):
 if (run_id == 'amlcompute'):
     run_id = run.parent.id
 model_name = args.model_name
-metric_eval = "mse"
+metric_eval = "auc"
 
 allow_run_cancel = args.allow_run_cancel
 # Parameterize the matrices on which the models should be compared
@@ -115,24 +116,24 @@ try:
                 aml_workspace=ws)
 
     if (model is not None):
-        production_model_mse = 10000
+        production_model_auc = 0
         if (metric_eval in model.tags):
-            production_model_mse = float(model.tags[metric_eval])
-        new_model_mse = float(run.parent.get_metrics().get(metric_eval))
-        if (production_model_mse is None or new_model_mse is None):
+            production_model_auc = float(model.tags[metric_eval])
+        new_model_auc = float(run.parent.get_metrics().get(metric_eval))
+        if (production_model_auc is None or new_model_auc is None):
             print("Unable to find", metric_eval, "metrics, "
                   "exiting evaluation")
             if((allow_run_cancel).lower() == 'true'):
                 run.parent.cancel()
         else:
             print(
-                "Current Production model mse: {}, "
-                "New trained model mse: {}".format(
-                    production_model_mse, new_model_mse
+                "Current Production model auc: {}, "
+                "New trained model auc: {}".format(
+                    production_model_auc, new_model_auc
                 )
             )
 
-        if (new_model_mse < production_model_mse):
+        if (new_model_auc > production_model_auc):
             print("New trained model performs better, "
                   "thus it should be registered")
         else:
