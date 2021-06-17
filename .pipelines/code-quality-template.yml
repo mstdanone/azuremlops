@@ -5,7 +5,7 @@ steps:
 #  displayName: 'Run lint tests'
 
 - script: |   
-   python -m pip install lightgbm pandas numpy scikit-learn
+   python -m pip install lightgbm pandas numpy scikit-learn cryptography pyopenssl
   condition: succeededOrFailed()
   displayName: 'Install unit tests dependencies'
 
